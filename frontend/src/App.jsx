@@ -51,12 +51,13 @@ function App() {
 
   useEffect(() => {
     const addedHandler = ({ orderId, type }) => {
-      console.log('added');
+      
       if (type === "cloth") {
         setClothQueue((prevQueue) => [...prevQueue, parseInt(orderId)]);
       } else {
         setFoodQueue((prevQueue) => [...prevQueue, parseInt(orderId)]);
       }
+      console.log('pushed whyyy');
       senderSocket.emit('push',{OrderId:orderId,Type: type });
     };
 
