@@ -51,6 +51,7 @@ function App() {
 
   useEffect(() => {
     const addedHandler = ({ orderId, type }) => {
+      console.log('added');
       if (type === "cloth") {
         setClothQueue((prevQueue) => [...prevQueue, parseInt(orderId)]);
       } else {
