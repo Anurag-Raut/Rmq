@@ -8,7 +8,12 @@ const cors = require('cors');
 
 const app = express();
 const httpServer = http.createServer(app);
+
+const queue = process.env.QUEUE || 'food';
+const prefetch = parseInt(process.env.PREFETCH) || 3;
+
 const io = new Server(httpServer, {
+  path: `/${queue}.io/`,
   cors: {
     origin: '*',
   },
@@ -17,8 +22,7 @@ const serviceNumber = 1;
 app.use(cors());
 
 // Get values from environment variables
-const queue = process.env.QUEUE || 'food';
-const prefetch = parseInt(process.env.PREFETCH) || 3;
+
 let count = 0;
 
 amqp.connect( 'amqp://guest:guest@rabbitmq:5672', function (error0, connection) {

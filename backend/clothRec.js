@@ -9,6 +9,7 @@ const cors = require('cors');
 const app = express();
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
+  path: `/${queue}.io/`,
   cors: {
     origin: '*',
   },
