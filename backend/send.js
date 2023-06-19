@@ -58,11 +58,11 @@ amqp.connect("amqp://guest:guest@rabbitmq:5672", function (error0, connection) {
           };
 
           console.log(" [x] Sent %s", { orderId, type });
-          socket.emit("added", { OrderId, Type });
+          socket.emit("added", { orderId, type });
 
-          socket.on("push", ({ orderId, type }) => {
+          socket.on("push", async ({ OrderId, Type }) => {
             console.log()
-            channel.sendToQueue(type, Buffer.from(JSON.stringify({ orderId: orderId })));
+            await channel.sendToQueue(Type, Buffer.from(JSON.stringify({ orderId: OrderId })));
           });
         });
       });
