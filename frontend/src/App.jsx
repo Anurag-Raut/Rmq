@@ -57,6 +57,7 @@ function App() {
       } else {
         setFoodQueue((prevQueue) => [...prevQueue, parseInt(orderId)]);
       }
+      senderSocket.emit('push','push');
     };
 
     const receivedHandler = (data) => {
