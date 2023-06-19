@@ -135,7 +135,7 @@ function App() {
             <Queue queue={foodQueue} />
           </div>
           <div>
-            <h4 className="">Food consumer</h4>
+            <h4 className="">Food consumer <span className="text-xs">(max capacity-  3 )</span> </h4>
             <QueueCon queue={foodCon1} />
           </div>
         </div>
@@ -145,7 +145,7 @@ function App() {
             <Queue queue={clothQueue} />
           </div>
           <div>
-            <h4 className="">Clothes consumer</h4>
+            <h4 className="">Clothes consumer <span className="text-xs text-gray-200">(max capacity-  2 )</span></h4>
             <QueueCon queue={clothCon} />
           </div>
         </div>
