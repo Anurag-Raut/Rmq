@@ -9,7 +9,7 @@ const cors = require('cors');
 const app = express();
 const httpServer = http.createServer(app);
 
-const queue = process.env.QUEUE || 'food';
+const queue = process.env.QUEUE ;
 const prefetch = parseInt(process.env.PREFETCH) || 3;
 
 const io = new Server(httpServer, {
