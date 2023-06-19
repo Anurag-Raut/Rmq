@@ -23,6 +23,9 @@ senderSocket.on("fullQueue", (data) => {
     });
   console.log("full queue");
 });
+senderSocket.on('sendreply',(data)=>{
+    console.log(data);
+})
 
 
 function App() {

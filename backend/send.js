@@ -32,6 +32,7 @@ amqp.connect("amqp://guest:guest@rabbitmq:5672", function (error0, connection) {
 
       socket.on("send", async (data) => {
         const { type, orderId } = data;
+        socket.emit('sendreply','senderworking')
         channel.assertQueue(type, {
           durable: false,
         });
