@@ -3,4 +3,6 @@ import { io } from 'socket.io-client';
 // "undefined" means the URL will be computed from the `window.location` object
 const URL = 'https://mq-visualizer.sit';
 
-export const recieverFoodSocket = io(URL);
+export const recieverFoodSocket = io({
+    path: "/food.io/"
+  });
