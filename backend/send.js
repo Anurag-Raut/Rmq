@@ -6,6 +6,7 @@ const cors = require("cors");
 const amqp = require("amqplib/callback_api.js");
 const http = require("http");
 const  {Server}  = require("socket.io");
+
 const app = express();
 
 const httpServer = http.createServer(app);
@@ -16,8 +17,9 @@ const io = new Server(httpServer, {
 app.use(cors());
 app.use(express.json());
 var count = 0;
-amqp.connect("amqp://localhost", function (error0, connection) {
+amqp.connect("amqp://guest:guest@rabbitmq:5672", function (error0, connection) {
   if (error0) {
+    console.log(error0)
     throw error0;
   }
   connection.createChannel(function (error1, channel) {

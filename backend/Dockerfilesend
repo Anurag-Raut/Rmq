@@ -14,11 +14,10 @@ RUN npm install
 COPY . .
 
 # Expose the port that the application is listening on (change it if necessary)
-EXPOSE 5000
+EXPOSE 3000
 
 # Set the environment variables for fetch and queue
-ENV FETCH_VARIABLE_NAME 2
-ENV QUEUE_VARIABLE_NAME cloth
+
 
 # Start the application when the container is run, passing the environment variables as arguments
-CMD [ "node", "clothRec.js", "$FETCH_VARIABLE_NAME", "$QUEUE_VARIABLE_NAME" ]
+CMD [ "node", "send.js" ]

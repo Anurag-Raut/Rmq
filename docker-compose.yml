@@ -1,0 +1,53 @@
+version: "3"
+
+services:
+  rmq-sender:
+    image: anurag86/rmq-sender:2.1.0
+    ports:
+      - 3000:3000
+    restart: always
+    networks:
+      - mynet
+    depends_on:
+      - rabbitmq
+
+  food-rmq-receiver:
+    image: anurag86/rmq-receiver:2.0.0
+    ports:
+      - 4000:4000
+    restart: always
+    networks:
+      - mynet
+    depends_on:
+      - rabbitmq
+    environment:
+      - PREFETCH=3
+      - QUEUE=food
+
+  cloth-rmq-receiver:
+    image: anurag86/rmq-receiver:2.0.0
+    ports:
+      - 5000:4000
+    restart: always
+    networks:
+      - mynet
+    depends_on:
+      - rabbitmq
+    environment:
+      - PREFETCH=2
+      - QUEUE=cloth
+    
+
+  rabbitmq:
+    image: rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+    networks:
+      - mynet
+    hostname: rabbitmq
+    
+
+networks:
+  mynet:
+    driver: bridge
