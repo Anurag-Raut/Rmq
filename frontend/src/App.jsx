@@ -36,8 +36,8 @@ function App() {
   const [clothCon, setClothCon] = useState([]);
   const [count, setCount] = useState(0);
 
-  async function sendRequest(count, setCount) {
-    setCount(count + 1);
+  async function sendRequest( setCount) {
+    setCount((prevCount) => prevCount + 1);
     console.log(document.getElementById("select").value);
     senderSocket.emit("send", {
       type: document.getElementById("select").value,
@@ -127,7 +127,7 @@ function App() {
         <button
         className="mt-3"
           onClick={() => {
-            sendRequest(count, setCount);
+            sendRequest(setCount);
           }}
         >
           Submit
