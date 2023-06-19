@@ -47,7 +47,7 @@ amqp.connect("amqp://guest:guest@rabbitmq:5672", function (error0, connection) {
           if (numItems > 10) {
             console.log(`Queue ${type} is full. Item not added.`);
             socket.emit('fullQueue', { orderId, type });
-            // return;
+            return;
           }
 
           var msg = {
