@@ -54,12 +54,12 @@ amqp.connect( 'amqp://guest:guest@rabbitmq:5672', function (error0, connection) 
         function (msg) {
           if (msg !== null) {
             var a = Math.floor((Math.random() * 10 + 5) * 1000);
-            let time=new Date().setTime()+a;
+            let tim=new Date().getTime()+a;
 
             var message = msg.content.toString();
             message = JSON.parse(message);
             message.type = queue;
-            message.time = time;
+            message.time = tim;
             message.serviceNumber = serviceNumber;
             message = JSON.stringify(message);
             console.log(message);
