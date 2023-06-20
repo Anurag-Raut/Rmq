@@ -39,34 +39,32 @@ amqp.connect("amqp://guest:guest@rabbitmq:5672", function (error0, connection) {
         channel.assertQueue(type, {
           durable: false,
         });
-        console.log('pusfsgdfgdf')
-        socket.on("push",  ({ OrderId, Type }) => {
-          console.log({ OrderId, Type },'push')
-           channel.sendToQueue(Type, Buffer.from(JSON.stringify({ orderId: OrderId })));
-        });
 
         // Check number of items in the queue
-        // channel.checkQueue(type, (err, result) => {
-        //   if (err) {
-        //     throw err;
-        //   }
+        channel.checkQueue(type, (err, result) => {
+          if (err) {
+            throw err;
+          }
 
-        //   const numItems = result.messageCount;
-        //   if (numItems > 10) {
-        //     console.log(`Queue ${type} is full. Item not added.`);
-        //     socket.emit("fullQueue", { orderId, type });
-        //     return;
-        //   }
+          const numItems = result.messageCount;
+          if (numItems > 10) {
+            console.log(`Queue ${type} is full. Item not added.`);
+            socket.emit("fullQueue", { orderId, type });
+            return;
+          }
 
-        //   var msg = {
-        //     orderId: orderId,
-        //   };
+          var msg = {
+            orderId: orderId,
+          };
 
-        //   console.log(" [x] Sent %s", { orderId, type });
-        //   socket.emit("added", { orderId, type });
+          console.log(" [x] Sent %s", { orderId, type });
+          socket.emit("added", { orderId, type });
 
-         
-        // });
+          socket.on("push",  ({ OrderId, Type }) => {
+            console.log({ OrderId, Type },'push')
+             channel.sendToQueue(Type, Buffer.from(JSON.stringify({ orderId: OrderId })));
+          });
+        });
       });
     });
   });
