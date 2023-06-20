@@ -3,6 +3,7 @@ function QueueCon({ queue }) {
   return (
     <div>
       {queue?.map((data, index) => {
+        console.log(data.time)
         return (
           <div key={index} class="flex justify-between w-3">
             <h4 className="mr-3" key={index}>
