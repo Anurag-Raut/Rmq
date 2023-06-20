@@ -2,7 +2,7 @@ import Countdown from "react-countdown";
 function QueueCon({ queue }) {
   return (
     <div>
-      {queue?.map((data, index) => {
+      {queue?.foreach((data, index) => {
         var tim=data.time- new Date().getTime();
         console.log(data.time- new Date().getTime())
         return (
