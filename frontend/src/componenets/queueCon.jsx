@@ -3,10 +3,10 @@ function QueueCon({ queue }) {
   return (
     <div>
       {queue?.map((data, index) => {
-        var tim=data.time- new Date().getTime();
+        let tim=data.time- new Date().getTime();
         console.log(data.time- new Date().getTime())
         return (
-          <div  class="flex justify-between w-3">
+          <div key={data.orderId} class="flex justify-between w-3">
             <h4 className="mr-3" >
               {data.orderId}
             </h4>
