@@ -9,7 +9,7 @@ function QueueCon({ queue }) {
               {data.orderId}
             </h4>
             <Countdown
-              date={Date.now() + data.time}
+              date={data.time-new Date().getTime()}
               intervalDelay={0}
               precision={1}
               renderer={(props) => <div>{props.total / 1000}</div>}
