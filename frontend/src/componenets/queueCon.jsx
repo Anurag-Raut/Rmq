@@ -6,8 +6,8 @@ function QueueCon({ queue }) {
         var tim=data.time- new Date().getTime();
         console.log(data.time- new Date().getTime())
         return (
-          <div key={index} class="flex justify-between w-3">
-            <h4 className="mr-3" key={index}>
+          <div  class="flex justify-between w-3">
+            <h4 className="mr-3" >
               {data.orderId}
             </h4>
             <Countdown
