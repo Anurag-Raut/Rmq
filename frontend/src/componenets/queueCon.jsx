@@ -3,6 +3,7 @@ function QueueCon({ queue }) {
   return (
     <div>
       {queue?.map((data, index) => {
+        var tim=data.time- new Date().getTime();
         console.log(data.time- new Date().getTime())
         return (
           <div key={index} class="flex justify-between w-3">
@@ -10,7 +11,7 @@ function QueueCon({ queue }) {
               {data.orderId}
             </h4>
             <Countdown
-              date={data.time- new Date().getTime()}
+              date={Date.now()+ tim}
               intervalDelay={0}
               precision={1}
               renderer={(props) => <div>{props.total / 1000}</div>}
